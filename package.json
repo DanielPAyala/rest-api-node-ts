@@ -1,0 +1,17 @@
+{
+  "name": "rest-api-node-ts",
+  "version": "1.0.0",
+  "description": "REST API's con Express y Typescript",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon --exec ts-node src/index.ts",
+    "build": "npx tsc"
+  },
+  "author": "Carlos Daniel",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
