@@ -9,9 +9,7 @@ async function connectDB() {
     await db.authenticate();
     db.sync();
     console.log(
-      colors.blue.bold(
-        "Conexión a la base de datos establecida correctamente."
-      )
+      colors.blue.bold("Conexión a la base de datos establecida correctamente.")
     );
   } catch (error) {
     console.error(colors.red.bold("Error al conectar a la base de datos."));

@@ -1,7 +1,7 @@
 import { server } from "./server";
 import colors from "colors";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || process.env.SERVER_PORT;
 
 server.listen(port, () => {
   console.log(
