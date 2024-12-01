@@ -1,10 +1,9 @@
-import express from 'express';
+import express from "express";
+import { productsRouter } from "./router";
 
 const server = express();
 
 // Routing
-server.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
+server.use("/api/products", productsRouter);
 
 export default server;
