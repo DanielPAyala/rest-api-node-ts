@@ -2,6 +2,7 @@ import { Router } from "express";
 import { body, param } from "express-validator";
 import {
   createProduct,
+  deleteProduct,
   getProductById,
   getProducts,
   updateAvailability,
@@ -53,9 +54,12 @@ router.put(
   updateProduct
 );
 
-router.delete("/", (req, res) => {
-  res.json({ message: "From DELETE" });
-});
+router.delete(
+  "/:id",
+  param("id").isNumeric().withMessage("ID no válido"),
+  handleInputErrors,
+  deleteProduct
+);
 
 router.patch(
   "/:id",
