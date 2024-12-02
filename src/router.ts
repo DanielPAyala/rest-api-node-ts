@@ -1,13 +1,11 @@
 import { Router } from "express";
 import { body } from "express-validator";
-import { createProduct } from "./handlers/product";
+import { createProduct, getProducts } from "./handlers/product";
 import { handleInputErrors } from "./middlewares";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "From GET" });
-});
+router.get("/", getProducts);
 
 router.post(
   "/",
