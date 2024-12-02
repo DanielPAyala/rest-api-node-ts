@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { body, param } from "express-validator";
-import { createProduct, getProductById, getProducts } from "./handlers/product";
+import {
+  createProduct,
+  getProductById,
+  getProducts,
+  updateProduct
+} from "./handlers/product";
 import { handleInputErrors } from "./middlewares";
 
 const router = Router();
@@ -28,9 +33,24 @@ router.post(
   createProduct
 );
 
-router.put("/", (req, res) => {
-  res.json({ message: "From PUT" });
-});
+router.put(
+  "/:id",
+  param("id").isNumeric().withMessage("ID no válido"),
+  // Validación de los datos
+  body("name").notEmpty().withMessage("El nombre es obligatorio"),
+  body("price")
+    .isNumeric()
+    .withMessage("El precio debe ser un número")
+    .notEmpty()
+    .withMessage("El nombre es obligatorio")
+    .custom((value) => value > 0)
+    .withMessage("El precio debe ser mayor a 0"),
+  body("availability")
+    .isBoolean()
+    .withMessage("La disponibilidad no es válida"),
+  handleInputErrors,
+  updateProduct
+);
 
 router.delete("/", (req, res) => {
   res.json({ message: "From DELETE" });
