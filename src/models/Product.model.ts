@@ -8,7 +8,7 @@ export default class Product extends Model {
   @Column({ type: DataType.STRING(100) })
   declare name: string;
 
-  @Column({ type: DataType.FLOAT(6, 2) })
+  @Column({ type: DataType.FLOAT })
   declare price: number;
 
   @Default(true)

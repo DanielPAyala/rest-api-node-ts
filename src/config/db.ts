@@ -10,6 +10,7 @@ const db = new Sequelize(process.env.DATABASE_URL, {
       rejectUnauthorized: false
     }
   },
-  models: [__dirname + "/../models/**/*.model.ts"]
+  models: [__dirname + "/../models/**/*.model.ts"],
+  logging: false
 });
 export { db };

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx nodemon --exec ts-node src/index.ts",
     "build": "npx tsc",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "author": "Carlos Daniel",
   "license": "ISC",
