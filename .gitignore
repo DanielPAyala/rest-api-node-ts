@@ -42,8 +42,10 @@ coverage/
 
 # Test-related files
 *.test.js
-*.test.ts
-jest.config.js
+# Jest: Comentados para guardar los archivos de test en el repositorio (no recomendado)
+# __tests__/
+# *.test.ts
+# jest.config.js
 coverage/
 .nyc_output/
 
