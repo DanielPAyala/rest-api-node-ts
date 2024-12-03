@@ -1,5 +1,5 @@
 import request from "supertest";
-import { server } from "../server";
+import { server } from "./server";
 
 describe("GET / api", () => {
   it("Should send back a json response", async () => {
