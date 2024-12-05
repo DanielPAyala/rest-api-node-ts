@@ -81,3 +81,48 @@ describe("GET /api/products", () => {
     expect(response.body.data).toHaveLength(1);
   });
 });
+
+describe("GET /api/products/:id", () => {
+  it("Should return 404 if product does not exist", async () => {
+    const productId = 200;
+    const response = await request(server).get(`/api/products/${productId}`);
+
+    expect(response.status).toEqual<number>(404);
+    expect(response.body).toHaveProperty("error");
+
+    expect(response.status).not.toBe(500);
+    expect(response.body).not.toHaveProperty("data");
+
+    expect(response.headers["content-type"]).toMatch(/json/);
+    expect(response.body.error).toBe("Producto no encontrado.");
+  });
+
+  it("Should check a valid ID in the URL", async () => {
+    const productId = "abc";
+    const response = await request(server).get(`/api/products/${productId}`);
+
+    expect(response.status).toEqual<number>(400);
+    expect(response.body).toHaveProperty("errors");
+
+    expect(response.status).not.toBe(500);
+    expect(response.body).not.toHaveProperty("data");
+
+    expect(response.headers["content-type"]).toMatch(/json/);
+    expect(response.body.errors[0].msg).toBe("ID no válido");
+  });
+
+  it("Should return a single product", async () => {
+    const productId = 1;
+    const response = await request(server).get(`/api/products/${productId}`);
+
+    expect(response.status).toEqual<number>(200);
+    expect(response.body).toHaveProperty("data");
+
+    expect(response.status).not.toBe(500);
+    expect(response.body).not.toHaveProperty("error");
+
+    expect(response.headers["content-type"]).toMatch(/json/);
+    expect(response.body.data).toBeInstanceOf(Object);
+    expect(response.body.data.id).toBe(1);
+  });
+});
