@@ -59,3 +59,25 @@ describe("POST /api/products", () => {
     expect(response.body.data.availability).toBe(true);
   });
 });
+
+describe("GET /api/products", () => {
+  it("Should check if api/products url exists", async () => {
+    const response = await request(server).get("/api/products");
+
+    expect(response.status).not.toBe(404);
+  });
+
+  it("Should return a list of products", async () => {
+    const response = await request(server).get("/api/products");
+
+    expect(response.status).toEqual<number>(200);
+    expect(response.body).toHaveProperty("data");
+
+    expect(response.status).not.toBe(500);
+    expect(response.body).not.toHaveProperty("error");
+
+    expect(response.headers["content-type"]).toMatch(/json/);
+    expect(response.body.data).toBeInstanceOf(Array);
+    expect(response.body.data).toHaveLength(1);
+  });
+});
