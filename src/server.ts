@@ -4,7 +4,7 @@ import { productsRouter } from "./router";
 import { db } from "./config/db";
 
 // Connect to the database
-async function connectDB() {
+export async function connectDB() {
   try {
     await db.authenticate();
     db.sync();
