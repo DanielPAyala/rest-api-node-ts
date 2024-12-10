@@ -1,4 +1,5 @@
 import swaggerJSDoc from "swagger-jsdoc";
+import { SwaggerUiOptions } from "swagger-ui-express";
 
 const options: swaggerJSDoc.Options = {
   swaggerDefinition: {
@@ -25,3 +26,17 @@ const options: swaggerJSDoc.Options = {
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
+
+export const swaggerUiOptions: SwaggerUiOptions = {
+  customCss: `
+    .topbar-wrapper .link {
+      content: url("https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg");
+      height: 150px;
+      width: auto;
+    }
+
+    .swagger-ui .topbar {
+      background-color: #333;
+    }
+  `
+};
